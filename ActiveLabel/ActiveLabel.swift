@@ -322,7 +322,10 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
             }
             
             if let highlightFont = hightlightFont {
-                attributes[NSAttributedString.Key.font] = highlightFont
+                switch type {
+                case .custom: attributes[NSAttributedString.Key.font] = highlightFont
+                default: attributes[NSAttributedString.Key.font] = font!
+                }
             }
 			
             if let configureLinkAttribute = configureLinkAttribute {
@@ -415,7 +418,10 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
         }
         
         if let highlightFont = hightlightFont {
-            attributes[NSAttributedString.Key.font] = highlightFont
+            switch type {
+            case .custom: attributes[NSAttributedString.Key.font] = highlightFont
+            default: attributes[NSAttributedString.Key.font] = font!
+            }
         }
         
         if let configureLinkAttribute = configureLinkAttribute {
