@@ -54,6 +54,9 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
     @IBInspectable public var lineSpacing: CGFloat = 0 {
         didSet { updateTextStorage(parseText: false) }
     }
+    @IBInspectable public var lineHeightMultiple: CGFloat = 0 {
+        didSet { updateTextStorage(parseText: false) }
+    }
     @IBInspectable public var minimumLineHeight: CGFloat = 0 {
         didSet { updateTextStorage(parseText: false) }
     }
@@ -380,7 +383,8 @@ typealias ElementTuple = (range: NSRange, element: ActiveElement, type: ActiveTy
         paragraphStyle.lineBreakMode = NSLineBreakMode.byWordWrapping
         paragraphStyle.alignment = textAlignment
         paragraphStyle.lineSpacing = lineSpacing
-        paragraphStyle.minimumLineHeight = minimumLineHeight > 0 ? minimumLineHeight: self.font.pointSize * 1.14
+        paragraphStyle.lineHeightMultiple = lineHeightMultiple > 0 ? lineHeightMultiple : 0.5
+        paragraphStyle.minimumLineHeight = minimumLineHeight
         attributes[NSAttributedString.Key.paragraphStyle] = paragraphStyle
         mutAttrString.setAttributes(attributes, range: range)
 
